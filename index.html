@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://deev.space/media/favicon.ico" type="image/x-icon">
+    <title>Лабораторные работы по веб-технологиям</title>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            height: 100vh;
+        }
+        .sidebar {
+            width: 300px;
+            background-color: #2c3e50;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        .sidebar h2 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+        .lab-list {
+            list-style: none;
+        }
+        .lab-list li {
+            margin-bottom: 10px;
+        }
+        .lab-list a {
+            display: block;
+            padding: 12px 15px;
+            background-color: #34495e;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        .lab-list a:hover {
+            background-color: #1abc9c;
+        }
+        .content {
+            flex: 1;
+            padding: 40px;
+            overflow-y: auto;
+            background-color: #f8f9fa;
+        }
+        #readme-content h1 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+        #readme-content h2 {
+            color: #34495e;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        #readme-content h3 {
+            color: #555;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        #readme-content p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        #readme-content ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+        #readme-content li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+        #readme-content code {
+            background-color: #e9ecef;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+        #readme-content pre {
+            background-color: #e9ecef;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin-bottom: 15px;
+        }
+        #readme-content a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        #readme-content a:hover {
+            text-decoration: underline;
+        }
+        #readme-content img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Лабораторные работы</h2>
+        <ul class="lab-list">
+            <li><a href="labs/lab-01/index.html">Лабораторная работа №1</a></li>
+            <li><a href="labs/lab-02/index.html">Лабораторная работа №2</a></li>
+            <li><a href="labs/lab-03/index.html">Лабораторная работа №3</a></li>
+            <li><a href="labs/lab-04/index.html">Лабораторная работа №4</a></li>
+            <li><a href="labs/lab-05/index.html">Лабораторная работа №5</a></li>
+            <li><a href="labs/lab-06/index.html">Лабораторная работа №6</a></li>
+            <li><a href="labs/lab-07/index.html">Лабораторная работа №7</a></li>
+            <li><a href="labs/lab-08/index.html">Лабораторная работа №8</a></li>
+            <li><a href="labs/lab-09/index.html">Лабораторная работа №9</a></li>
+            <li><a href="labs/lab-10/index.html">Лабораторная работа №10</a></li>
+        </ul>
+    </div>
+    <div class="content">
+        <div id="readme-content">Загрузка...</div>
+    </div>
+    
+    <script>
+        fetch('README.md')
+            .then(response => response.text())
+            .then(text => {
+                document.getElementById('readme-content').innerHTML = marked.parse(text);
+            })
+            .catch(error => {
+                document.getElementById('readme-content').innerHTML = 
+                    '<p>Ошибка загрузки README.md</p>';
+                console.error('Error loading README:', error);
+            });
+    </script>
+</body>
+</html>
