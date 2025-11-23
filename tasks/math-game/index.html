@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://deev.space/media/favicon.ico" type="image/x-icon">
+    <title>Math Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Math Game</h1>
+        <div class="game-info">
+            <span>Уровень: <strong id="level">Начальный</strong></span>
+            <span>Время: <strong id="timer">5:00</strong></span>
+        </div>
+        <div class="game-stats">
+            <span>Правильно: <strong id="correct">0</strong></span>
+            <span>Неправильно: <strong id="wrong">0</strong></span>
+            <span>Осталось: <strong id="remaining">10</strong></span>
+        </div>
+        <div id="question-container">
+            <h2 id="question"></h2>
+            <input type="text" id="answer" placeholder="Введите ваш ответ">
+            <button id="submit" onclick="checkAnswer()">Отправить</button>
+        </div>
+        <div id="feedback"></div>
+        <div id="result-container" style="display: none;">
+            <h2 id="result-message"></h2>
+            <button onclick="restartGame()">Начать заново</button>
+            <button onclick="exitGame()">Выйти</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

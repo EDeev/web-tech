@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://deev.space/media/favicon.ico" type="image/x-icon">
+    <title>Тестирование функций JavaScript</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Тестирование функций JavaScript</h1>
+
+        <!-- Возведение в степень -->
+        <div class="function-block">
+            <h2>1. Возведение в степень | Exponentiation</h2>
+            <p class="description">
+                Функция <strong>pow(x,n)</strong> возвращает <strong>x</strong> в степени <strong>n</strong>. Иначе говоря, умножает <strong>x</strong> на себя <strong>n</strong> раз и возвращает результат. Функция обязана поддерживать только натуральные значения <strong>n</strong>.
+            </p>
+            <pre class="code">function pow(x, n) {
+  let result = 1;
+  for (let i = 0; i < n; i++) {
+    result *= x;
+  }
+  return result;
+}</pre>
+            <div class="test-section">
+                <input type="number" id="pow-x" placeholder="x">
+                <input type="number" id="pow-n" placeholder="n">
+                <button onclick="testPow()">Вычислить</button>
+                <div class="result" id="pow-result"></div>
+            </div>
+        </div>
+
+        <!-- НОД -->
+        <div class="function-block">
+            <h2>2. Нахождение НОД | Greatest common divisor (GCD)</h2>
+            <p class="description">
+                Функция <strong>gcd(a,b)</strong> возвращает <strong>x</strong> - наибольший общий делитель двух неотрицательных чисел <strong>a</strong> и <strong>b</strong>.
+            </p>
+            <pre class="code">function gcd(a, b) {
+  while (b !== 0) {
+    let temp = b;
+    b = a % b;
+    a = temp;
+  }
+  return a;
+}</pre>
+            <div class="test-section">
+                <input type="number" id="gcd-a" placeholder="a">
+                <input type="number" id="gcd-b" placeholder="b">
+                <button onclick="testGcd()">Вычислить</button>
+                <div class="result" id="gcd-result"></div>
+            </div>
+        </div>
+
+        <!-- Наименьшая цифра -->
+        <div class="function-block">
+            <h2>3. Наименьшая цифра | Minimum digit</h2>
+            <p class="description">
+                Функция <strong>minDigit(x)</strong> возвращает наименьшую цифру целого неотрицательного числа <strong>x</strong>.
+            </p>
+            <pre class="code">function minDigit(x) {
+  let min = 9;
+  while (x > 0) {
+    let digit = x % 10;
+    if (digit < min) {
+      min = digit;
+    }
+    x = Math.floor(x / 10);
+  }
+  return min;
+}</pre>
+            <div class="test-section">
+                <input type="number" id="minDigit-x" placeholder="x">
+                <button onclick="testMinDigit()">Вычислить</button>
+                <div class="result" id="minDigit-result"></div>
+            </div>
+        </div>
+
+        <!-- Pluralization -->
+        <div class="function-block">
+            <h2>4. Pluralization</h2>
+            <p class="description">
+                Функция <strong>pluralizeRecords(n)</strong> для любого целого неотрицательного значения <strong>n</strong> вернёт строку "В результате выполнения запроса было найдено <strong>n</strong> записей", в которой для каждого слова будет образована правильная форма множественного числа, в зависимости от конкретного значения <strong>n</strong>.
+            </p>
+            <pre class="code">function pluralizeRecords(n) {
+  let recordForm = "записей";
+  let wasForm = "было найдено";
+  
+  let lastDigit = n % 10;
+  let lastTwoDigits = n % 100;
+  
+  if (lastTwoDigits >= 11 && lastTwoDigits <= 14) {
+    //pass
+  } else if (lastDigit === 1) {
+    recordForm = "запись";
+    wasForm = "была найдена";
+  } else if (lastDigit >= 2 && lastDigit <= 4) {
+    recordForm = "записи";
+  }
+  
+  return `В результате выполнения запроса ${wasForm} ${n} ${recordForm}`;
+}</pre>
+            <div class="test-section">
+                <input type="number" id="pluralize-n" placeholder="n">
+                <button onclick="testPluralize()">Проверить</button>
+                <div class="result" id="pluralize-result"></div>
+            </div>
+        </div>
+
+        <!-- Числа Фибоначчи -->
+        <div class="function-block">
+            <h2>5. Числа Фибоначчи | Fibonacci numbers</h2>
+            <p class="description">
+                Функция <strong>fibb(n)</strong> для любого целого неотрицательного числа <strong>n <= 1000</strong> вернёт n-ое число из последовательности Фибоначчи.
+            </p>
+            <pre class="code">function fibb(n) {
+  if (n === 0) return 0;
+  if (n === 1) return 1;
+  
+  let prev = 0;
+  let current = 1;
+  
+  for (let i = 2; i <= n; i++) {
+    let next = prev + current;
+    prev = current;
+    current = next;
+  }
+  
+  return current;
+}</pre>
+            <div class="test-section">
+                <input type="number" id="fibb-n" placeholder="n">
+                <button onclick="testFibb()">Вычислить</button>
+                <div class="result" id="fibb-result"></div>
+            </div>
+        </div>
+
+        <!-- Сортировка объектов -->
+        <div class="function-block">
+            <h2>6. Сортировка объектов | Sorting objects</h2>
+            <p class="description">
+                Функция <strong>getSortedArray(array, key)</strong> сортирует массив объектов. У функции два параметра: <strong>array</strong> - массив объектов, оторый нужно отсортировать, и <strong>key</strong> - ключ, по значению которого нужно произвести сортировку. Порядок сортировки - по возрастанию.
+            </p>
+            <pre class="code">function getSortedArray(array, key) {
+  for (let i = 0; i < array.length; i++) {
+    for (let j = 0; j < array.length - 1 - i; j++) {
+      if (array[j][key] > array[j + 1][key]) {
+        let temp = array[j];
+        array[j] = array[j + 1];
+        array[j + 1] = temp;
+      }
+    }
+  }
+  return array;
+}</pre>
+            <div class="test-section">
+                <textarea id="sort-array" placeholder='[{"name":"Иван","age":25},{"name":"Мария","age":20}]' rows="3"></textarea>
+                <input type="text" id="sort-key" placeholder="key (например: age)">
+                <button onclick="testSort()">Сортировать</button>
+                <div class="result" id="sort-result"></div>
+            </div>
+        </div>
+
+        <!-- Шифр Цезаря -->
+        <div class="function-block">
+            <h2>7. Шифр Цезаря | Caesar's cipher</h2>
+            <p class="description">
+                Функция <strong>cesar(str, shift, action)</strong> производит шифрование и дешифровку строки <strong>str</strong> с использованием шифра Цезаря. В качестве алфавита используется русский алфавит. Параметр <strong>shift</strong> отвечает за сдвиг алфавита. Если <strong>action == 'encode'</strong>, функция производит шифрование, а если <strong>action == 'decode'</strong> - дешифровку.
+            </p>
+            <pre class="code">function cesar(str, shift, action) {
+  const alphabet = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя';
+  const alphabetUpper = 'АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ';
+  let result = '';
+  
+  for (let i = 0; i < str.length; i++) {
+    let char = str[i];
+    let isUpper = false;
+    let index = -1;
+    
+    if (alphabetUpper.indexOf(char) !== -1) {
+      isUpper = true;
+      index = alphabetUpper.indexOf(char);
+    } else if (alphabet.indexOf(char) !== -1) {
+      index = alphabet.indexOf(char);
+    }
+    
+    if (index !== -1) {
+      let newIndex;
+      if (action === 'encode') {
+        newIndex = (index + shift) % alphabet.length;
+      } else {
+        newIndex = (index - shift + alphabet.length) % alphabet.length;
+      }
+      
+      if (isUpper) {
+        result += alphabetUpper[newIndex];
+      } else {
+        result += alphabet[newIndex];
+      }
+    } else {
+      result += char;
+    }
+  }
+  
+  return result;
+}
+
+// Расшифровка: "эзтыхз фзъзъз" со сдвигом 8 = "хакуна матата"</pre>
+            <div class="test-section">
+                <input type="text" id="cesar-str" placeholder="Строка">
+                <input type="number" id="cesar-shift" placeholder="Сдвиг">
+                <select id="cesar-action">
+                    <option value="encode">Зашифровать</option>
+                    <option value="decode">Расшифровать</option>
+                </select>
+                <button onclick="testCesar()">Выполнить</button>
+                <div class="result" id="cesar-result"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="funcs/pow.js"></script>
+    <script src="funcs/gcd.js"></script>
+    <script src="funcs/minDigit.js"></script>
+    <script src="funcs/pluralizeRecords.js"></script>
+    <script src="funcs/fibb.js"></script>
+    <script src="funcs/getSortedArray.js"></script>
+    <script src="funcs/cesar.js"></script>
+
+    <script src="script.js"></script>
+</body>
+</html>
