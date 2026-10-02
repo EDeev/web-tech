@@ -1,3 +1,13 @@
+// Экранирование данных перед вставкой в HTML (данные приходят из общего учебного API)
+function esc(value) {
+    return String(value ?? '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+}
+
 const API_URL = 'https://edu.std-900.ist.mospolytech.ru/labs/api';
 const API_KEY = '358a63a5-52ae-4ab0-800b-90f75ce5a5c2';
 
@@ -91,16 +101,16 @@ function createOrderCard(order, number) {
     const deliveryTime = getDeliveryTime(order);
     
     return `
-        <div class="order-card" data-order-id="${order.id}">
+        <div class="order-card" data-order-id="${esc(order.id)}">
             <div class="order-card-header">
-                <span class="order-number">Заказ №${number}</span>
-                <span class="order-date">${date}</span>
+                <span class="order-number">Заказ №${esc(number)}</span>
+                <span class="order-date">${esc(date)}</span>
             </div>
             <div class="order-card-body">
                 <div class="order-info">
-                    <p><strong>Состав:</strong> ${composition}</p>
-                    <p><strong>Стоимость:</strong> ${price} руб.</p>
-                    <p><strong>Доставка:</strong> ${deliveryTime}</p>
+                    <p><strong>Состав:</strong> ${esc(composition)}</p>
+                    <p><strong>Стоимость:</strong> ${esc(price)} руб.</p>
+                    <p><strong>Доставка:</strong> ${esc(deliveryTime)}</p>
                 </div>
             </div>
             <div class="order-card-footer">
@@ -302,8 +312,8 @@ function showViewModal(order) {
     orderItems.forEach(function(item) {
         const itemHTML = `
             <div class="modal-order-item">
-                <span>${item.label}</span>
-                <span>${item.name} (${item.price}Р)</span>
+                <span>${esc(item.label)}</span>
+                <span>${esc(item.name)} (${esc(item.price)}Р)</span>
             </div>
         `;
         itemsContainer.insertAdjacentHTML('beforeend', itemHTML);
@@ -341,8 +351,8 @@ function showEditModal(order) {
     orderItems.forEach(function(item) {
         const itemHTML = `
             <div class="modal-order-item">
-                <span>${item.label}</span>
-                <span>${item.name} (${item.price}Р)</span>
+                <span>${esc(item.label)}</span>
+                <span>${esc(item.name)} (${esc(item.price)}Р)</span>
             </div>
         `;
         itemsContainer.insertAdjacentHTML('beforeend', itemHTML);

@@ -1,3 +1,13 @@
+// Экранирование данных перед вставкой в HTML (данные приходят из общего учебного API)
+function esc(value) {
+    return String(value ?? '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+}
+
 const API_URL = 'https://edu.std-900.ist.mospolytech.ru/labs/api';
 const API_KEY = '358a63a5-52ae-4ab0-800b-90f75ce5a5c2';
 
@@ -101,11 +111,11 @@ function displayOrderDishes() {
 
 function createOrderDishCard(dish) {
     return `
-        <div class="dish-card" data-dish-id="${dish.id}">
-            <img src="${dish.image}" alt="${dish.name}">
-            <p class="dish-price">${dish.price} руб.</p>
-            <p class="dish-name">${dish.name}</p>
-            <p class="dish-weight">${dish.count}</p>
+        <div class="dish-card" data-dish-id="${esc(dish.id)}">
+            <img src="${esc(dish.image)}" alt="${esc(dish.name)}">
+            <p class="dish-price">${esc(dish.price)} руб.</p>
+            <p class="dish-name">${esc(dish.name)}</p>
+            <p class="dish-weight">${esc(dish.count)}</p>
             <button class="remove-dish-btn">Удалить</button>
         </div>
     `;
@@ -177,8 +187,8 @@ function updateOrderSummary() {
             <div class="order-category">
                 <h3>Суп</h3>
                 <div class="order-item">
-                    <span>${orderDishes.soup.name}</span>
-                    <span>${orderDishes.soup.price} руб.</span>
+                    <span>${esc(orderDishes.soup.name)}</span>
+                    <span>${esc(orderDishes.soup.price)} руб.</span>
                 </div>
             </div>
         `;
@@ -197,8 +207,8 @@ function updateOrderSummary() {
             <div class="order-category">
                 <h3>Главное блюдо</h3>
                 <div class="order-item">
-                    <span>${orderDishes['main-course'].name}</span>
-                    <span>${orderDishes['main-course'].price} руб.</span>
+                    <span>${esc(orderDishes['main-course'].name)}</span>
+                    <span>${esc(orderDishes['main-course'].price)} руб.</span>
                 </div>
             </div>
         `;
@@ -217,8 +227,8 @@ function updateOrderSummary() {
             <div class="order-category">
                 <h3>Салат</h3>
                 <div class="order-item">
-                    <span>${orderDishes.salad.name}</span>
-                    <span>${orderDishes.salad.price} руб.</span>
+                    <span>${esc(orderDishes.salad.name)}</span>
+                    <span>${esc(orderDishes.salad.price)} руб.</span>
                 </div>
             </div>
         `;
@@ -237,8 +247,8 @@ function updateOrderSummary() {
             <div class="order-category">
                 <h3>Напиток</h3>
                 <div class="order-item">
-                    <span>${orderDishes.drink.name}</span>
-                    <span>${orderDishes.drink.price} руб.</span>
+                    <span>${esc(orderDishes.drink.name)}</span>
+                    <span>${esc(orderDishes.drink.price)} руб.</span>
                 </div>
             </div>
         `;
@@ -257,8 +267,8 @@ function updateOrderSummary() {
             <div class="order-category">
                 <h3>Десерт</h3>
                 <div class="order-item">
-                    <span>${orderDishes.dessert.name}</span>
-                    <span>${orderDishes.dessert.price} руб.</span>
+                    <span>${esc(orderDishes.dessert.name)}</span>
+                    <span>${esc(orderDishes.dessert.price)} руб.</span>
                 </div>
             </div>
         `;

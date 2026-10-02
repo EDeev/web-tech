@@ -1,3 +1,13 @@
+// Экранирование данных перед вставкой в HTML (данные приходят из общего учебного API)
+function esc(value) {
+    return String(value ?? '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+}
+
 const selectedDishes = {
     soup: null,
     'main-course': null,
@@ -36,11 +46,11 @@ function displayDishes() {
 
 function createDishCard(dish) {
     return `
-        <div class="dish-card" data-dish="${dish.keyword}">
-            <img src="${dish.image}" alt="${dish.name}">
-            <p class="dish-price">${dish.price} руб.</p>
-            <p class="dish-name">${dish.name}</p>
-            <p class="dish-weight">${dish.count}</p>
+        <div class="dish-card" data-dish="${esc(dish.keyword)}">
+            <img src="${esc(dish.image)}" alt="${esc(dish.name)}">
+            <p class="dish-price">${esc(dish.price)} руб.</p>
+            <p class="dish-name">${esc(dish.name)}</p>
+            <p class="dish-weight">${esc(dish.count)}</p>
             <button>Добавить</button>
         </div>
     `;
@@ -87,8 +97,8 @@ function updateOrderSummary() {
             <div class="order-category">
                 <h3>Суп</h3>
                 <div class="order-item">
-                    <span>${selectedDishes.soup.name}</span>
-                    <span>${selectedDishes.soup.price} руб.</span>
+                    <span>${esc(selectedDishes.soup.name)}</span>
+                    <span>${esc(selectedDishes.soup.price)} руб.</span>
                 </div>
             </div>
         `;
@@ -107,8 +117,8 @@ function updateOrderSummary() {
             <div class="order-category">
                 <h3>Главное блюдо</h3>
                 <div class="order-item">
-                    <span>${selectedDishes['main-course'].name}</span>
-                    <span>${selectedDishes['main-course'].price} руб.</span>
+                    <span>${esc(selectedDishes['main-course'].name)}</span>
+                    <span>${esc(selectedDishes['main-course'].price)} руб.</span>
                 </div>
             </div>
         `;
@@ -127,8 +137,8 @@ function updateOrderSummary() {
             <div class="order-category">
                 <h3>Напиток</h3>
                 <div class="order-item">
-                    <span>${selectedDishes.drink.name}</span>
-                    <span>${selectedDishes.drink.price} руб.</span>
+                    <span>${esc(selectedDishes.drink.name)}</span>
+                    <span>${esc(selectedDishes.drink.price)} руб.</span>
                 </div>
             </div>
         `;
