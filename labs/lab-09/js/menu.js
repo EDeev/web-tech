@@ -146,7 +146,7 @@ function selectDish(dish) {
     
     if (previousDish) {
         const previousCard = document.querySelector(
-            `.dish-card[data-dish="${esc(previousDish.keyword)}"]`
+            `.dish-card[data-dish="${previousDish.keyword}"]`
         );
         if (previousCard) {
             previousCard.classList.remove('selected');
@@ -156,7 +156,7 @@ function selectDish(dish) {
     selectedDishes[dish.category] = dish;
     
     const currentCard = document.querySelector(
-        `.dish-card[data-dish="${esc(dish.keyword)}"]`
+        `.dish-card[data-dish="${dish.keyword}"]`
     );
     if (currentCard) {
         currentCard.classList.add('selected');
@@ -308,7 +308,7 @@ function restoreSelection() {
         const dish = selectedDishes[category];
         if (dish) {
             const card = document.querySelector(
-                `.dish-card[data-dish="${esc(dish.keyword)}"]`
+                `.dish-card[data-dish="${dish.keyword}"]`
             );
             if (card) {
                 card.classList.add('selected');
