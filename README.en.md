@@ -3,6 +3,7 @@
 [Русский](README.md) · **English**
 
 [![CI](https://github.com/EDeev/web-tech/actions/workflows/ci.yml/badge.svg)](https://github.com/EDeev/web-tech/actions/workflows/ci.yml)
+[![Release](https://img.shields.io/github/v/release/EDeev/web-tech)](https://github.com/EDeev/web-tech/releases)
 
 Labs for the "Web Technologies Basics" course at Moscow Polytechnic University: from a first HTML page to
 the "EcoLunch" lunch delivery site with a menu, cart and orders through the course API.
@@ -32,6 +33,9 @@ Polytech course API; the API key was issued by the course and lives in the lab c
 
 API data is escaped before being inserted into the page (the `esc()` function); CI checks the syntax of
 all scripts.
+
+**Docker:** a prebuilt image with the site — `docker run -p 8080:80 ghcr.io/edeev/web-tech` (or `git.deev.su/edeev/web-tech`),
+then open http://localhost:8080.
 
 ## License
 

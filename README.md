@@ -3,6 +3,7 @@
 **Русский** · [English](README.en.md)
 
 [![CI](https://github.com/EDeev/web-tech/actions/workflows/ci.yml/badge.svg)](https://github.com/EDeev/web-tech/actions/workflows/ci.yml)
+[![Release](https://img.shields.io/github/v/release/EDeev/web-tech)](https://github.com/EDeev/web-tech/releases)
 
 Лабораторные по курсу «Основы веб-технологий» в Московском Политехе: от первой HTML-страницы до сайта
 сервиса доставки ланчей «ЭкоЛанч» с меню, корзиной и заказами через учебный API.
@@ -32,6 +33,9 @@
 
 Данные из API экранируются перед вставкой в страницу (функция `esc()`); CI проверяет синтаксис всех
 скриптов.
+
+**Docker:** готовый образ с сайтом — `docker run -p 8080:80 ghcr.io/edeev/web-tech` (или `git.deev.su/edeev/web-tech`),
+сайт откроется на http://localhost:8080.
 
 ## Лицензия
 
